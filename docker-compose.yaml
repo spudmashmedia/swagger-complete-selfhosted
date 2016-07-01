@@ -1,0 +1,13 @@
+version: '2'
+services:
+  codegen:
+    image: swaggerapi/swagger-generator
+    ports:
+      - "28199:8080"
+  editor:
+    image: swaggerapi/swagger-editor
+    ports:
+      - "28099:8080"
+    links:
+      - "codegen:codegen-host"
+    restart: always

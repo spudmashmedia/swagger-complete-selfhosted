@@ -30,43 +30,6 @@ At this point 2 docker containers will be created:
 - swaggercompleteselfhosted_editor_1  (port 28099)
 - swaggercompleteselfhosted_codegen_1 (port 28199)
 
-Now remote into swaggercompleteselfhosted_editor_1 to update *defaults.json* file for the editorOptions
-```
-  /> docker exec -it swaggercompleteselfhosted_editor_1 sh
-```
-once remoted into the container:
-```
-  /editor> cd config
-  /editor/config> vi defaults.json
-```
-
-Now replace
-1) Replace generators.swagger.io host name to ip:port of container swaggercompleteselfhosted_codegen_1 (for this example host is 192.168.99.100, and IP is from our codegen container 28199):
-```
-"codegen": {
-      "servers": "http://generator.swagger.io/api/gen/servers",
-      "clients": "http://generator.swagger.io/api/gen/clients",
-      "server": "http://generator.swagger.io/api/gen/servers/{language}",
-      "client": "http://generator.swagger.io/api/gen/clients/{language}"
-    },
-```
-to:
-```
-  "codegen": {
-      "servers": "http://192.168.99.100:28199/api/gen/servers",
-      "clients": "http://192.168.99.100:28199/api/gen/clients",
-      "server":  "http://192.168.99.100:28199/api/gen/servers/{language}",
-      "client":  "http://192.168.99.100:28199/api/gen/clients/{language}"
-    },
-```
-2) Remove import proxy url (no outbound calls)
-```
-  "importProxyUrl": "https://cors-it.herokuapp.com/?url="
-```
-to
-```
-  "importProxyUrl": ""
-```
 
 ## Test
 

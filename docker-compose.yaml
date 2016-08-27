@@ -8,7 +8,7 @@ services:
   editor:
     image: swaggerapi/swagger-editor
     volumes:
-      - ./editor/config:/editor/config
+      - ./editor-config:/editor/config
     ports:
       - "28099:8080"
     links:

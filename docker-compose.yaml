@@ -4,6 +4,7 @@ services:
     image: swaggerapi/swagger-generator
     ports:
       - "28199:8080"
+    restart: always
   editor:
     image: swaggerapi/swagger-editor
     ports:
